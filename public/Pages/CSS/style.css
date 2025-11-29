@@ -1,0 +1,206 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+.header {
+  padding: 20px 40px;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar .logo {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.navbar .logo i {
+  font-size: 40px;
+  color: #793fdd;
+}
+.navbar .logo h1 {
+  font-size: 24px;
+  text-transform: capitalize;
+}
+.navbar .buttons {
+  display: flex;
+  gap: 20px;
+}
+.normalbtn {
+  background: none;
+  border: none;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 10px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+.normalbtn:hover {
+  background-color: rgb(241, 241, 241);
+}
+.purplebtn {
+  background-color: #793fdd;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+.purplebtn:hover {
+  background-color: #8549ec;
+}
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 80px 80px 0px 80px;
+  background-color: #ece2ff;
+  gap: 20px;
+}
+.main h1 {
+  font-size: 50px;
+}
+.main p {
+  font-size: 18px;
+  padding: 0px 200px 30px 200px;
+  text-align: center;
+}
+.cardsSection {
+  padding: 40px 0px 40px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cardsSection h1 {
+  font-size: 30px;
+  padding-bottom: 30px;
+}
+.cardsSection .cards {
+  display: flex;
+  gap: 20px;
+}
+
+.cardsSection .cards .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  width: 400px;
+  gap: 20px;
+  border: 1px solid purple;
+  border-radius: 10px;
+  padding: 20px 0px;
+}
+.cardsSection .cards .card h3 {
+  font-size: 20px;
+}
+.cardsSection .cards .card p {
+  font-size: 18px;
+  padding: 10px 20px;
+}
+.cardsSection .cards .card img {
+  width: 100px;
+  height: 100px;
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 0px;
+  border-top: 1px solid black;
+}
+.footer .logo {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.footer .logo i {
+  font-size: 40px;
+  color: #793fdd;
+}
+.footer .logo h1 {
+  font-size: 24px;
+  text-transform: capitalize;
+}
+.footer p {
+  padding-top: 30px;
+  font-size: 18px;
+}
+/* model */
+.model {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.477);
+}
+.box {
+  background-color: #fff;
+  width: 30%;
+  padding: 10px 10px 30px 10px;
+  border-radius: 10px;
+}
+.box .closebtn {
+  display: flex;
+  justify-content: end;
+}
+.box .closebtn i {
+  cursor: pointer;
+}
+.box h1 {
+  font-size: 20px;
+  text-transform: capitalize;
+  font-family: sans-serif;
+  text-align: center;
+}
+.box p {
+  text-align: center;
+  padding: 4px 0px;
+  font-size: 14px;
+  color: gray;
+}
+.form {
+  display: flex;
+  gap: 1px;
+  flex-direction: column;
+  padding: 0px 10px;
+}
+.form label {
+  padding-top: 10px;
+}
+.form input {
+  padding: 3px 2px;
+}
+.form input:focus {
+  outline: none;
+}
+.form .create{
+    background-color: rgb(54, 54, 54);
+    padding: 10px 0px;
+    color: #fff;
+    margin: 20px 0px;
+    border: none;
+    cursor: pointer;
+}
+.box button{
+    background-color: transparent;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+.hide{
+    display: none;
+}

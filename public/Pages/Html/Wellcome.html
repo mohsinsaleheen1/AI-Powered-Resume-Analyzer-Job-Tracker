@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font-Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../CSS/style.css" />
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="../CSS/responsive.css" />
+    <title>Resume Analyzer Tracer</title>
+    <link rel="icon" type="image/png" href="../../Images/Favicon.png" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="header">
+      <div class="navbar">
+        <div class="logo">
+          <i class="fa-solid fa-file-csv"></i>
+          <h1>ResumeBoost AI</h1>
+        </div>
+        <div class="buttons">
+          <button class="normalbtn" onclick="showSignModel()">Sign In</button>
+          <button class="purplebtn" onclick="showSignupModel()">
+            Get Started
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Hero Section -->
+    <div class="main">
+      <h1>AI-Powered Resume Analyzer & Job Tracker</h1>
+      <p>
+        A modern AI tool that helps you analyze your resume, improve grammar,
+        increase ATS score, and track your job application progress — all in one
+        dashboard.
+      </p>
+      <button class="purplebtn" onclick="showSignupModel()">
+        Try Free Demo
+      </button>
+      <div class="cardsSection">
+        <h1>Powerful Features</h1>
+        <div class="cards">
+          <div class="card">
+            <img src="../../Images/img1.png" alt="" />
+            <h3>Smart Resume Check</h3>
+            <p>
+              AI analyzes your resume for grammar, score, ATS compatibility, and
+              improvements.
+            </p>
+          </div>
+          <div class="card">
+            <img src="../../Images/img2.png" alt="" />
+            <h3>Instant AI Suggestions</h3>
+            <p>
+              Get customized recommendations to improve your skills, keywords,
+              and profile.
+            </p>
+          </div>
+          <div class="card">
+            <img src="../../Images/img3.png" alt="" />
+            <h3>Job Tracker</h3>
+            <p>
+              Manage all your job applications in one place with real-time
+              progress tracking.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+      <div class="logo">
+        <i class="fa-solid fa-file-csv"></i>
+        <h1>ResumeBoost AI</h1>
+      </div>
+      <p>© 2025 ResumeBoost AI. AI-Powered Resume Analyzer & Job Tracker</p>
+    </div>
+    <!-- Model Signup-->
+    <div class="hide" id="SignupModel">
+      <div class="box">
+        <div class="closebtn">
+          <i class="fa-solid fa-xmark" onclick="closebtn()"></i>
+        </div>
+        <h1>Create your account</h1>
+        <p>Welcome! Please fill in the details to get started.</p>
+        <div class="form">
+          <label>Name</label>
+          <input type="text" required />
+          <label>Email address</label>
+          <input type="email" required />
+          <label>Password</label>
+          <input type="password" />
+          <button class="create">Get Started</button>
+        </div>
+        <p>
+          Already have an account?
+          <button onclick="ReplaceshowSignModel()">Sign in</button>
+        </p>
+      </div>
+    </div>
+    <!-- Model SignIn-->
+    <div class="hide" id="SigninModel">
+      <div class="box">
+        <div class="closebtn">
+          <i class="fa-solid fa-xmark" onclick="closebtn()"></i>
+        </div>
+        <h1>Sign in to My Application</h1>
+        <p>Welcome back! Please sign in to continue</p>
+        <div class="form">
+          <label>Email address</label>
+          <input type="email" required />
+          <label>Password</label>
+          <input type="password" />
+          <button class="create">Continue</button>
+        </div>
+        <p>
+          Don’t have an account?
+          <button onclick="ReplaceshowSignUpModel()">Sign up</button>
+        </p>
+      </div>
+    </div>
+    <!-- JavaScript -->
+    <script src="../Javascript/App.js"></script>
+  </body>
+</html>
