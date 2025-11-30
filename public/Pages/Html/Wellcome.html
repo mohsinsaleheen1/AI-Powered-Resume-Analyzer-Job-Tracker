@@ -11,6 +11,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../CSS/style.css" />
     <!-- Responsive CSS -->
@@ -93,12 +95,12 @@
         <p>Welcome! Please fill in the details to get started.</p>
         <div class="form">
           <label>Name</label>
-          <input type="text" required />
+          <input type="text" id="userName" required />
           <label>Email address</label>
-          <input type="email" required />
+          <input type="email" id="userEmail" required />
           <label>Password</label>
-          <input type="password" />
-          <button class="create">Get Started</button>
+          <input type="password" id="userPassword" required />
+          <button class="create" onclick="signupForm()">Get Started</button>
         </div>
         <p>
           Already have an account?
@@ -116,10 +118,10 @@
         <p>Welcome back! Please sign in to continue</p>
         <div class="form">
           <label>Email address</label>
-          <input type="email" required />
+          <input type="email" id="sEmail" required />
           <label>Password</label>
-          <input type="password" />
-          <button class="create">Continue</button>
+          <input type="password" id="sPassword" required />
+          <button class="create" onclick="loginForm()">Continue</button>
         </div>
         <p>
           Don’t have an account?
