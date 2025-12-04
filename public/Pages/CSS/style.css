@@ -184,23 +184,122 @@
 .form input {
   padding: 3px 2px;
 }
+.form textarea{
+  height: 80px;
+  padding: 7px;
+}
+.form select{
+  padding: 3px 2px;
+}
 .form input:focus {
   outline: none;
 }
-.form .create{
-    background-color: rgb(54, 54, 54);
-    padding: 10px 0px;
-    color: #fff;
-    margin: 20px 0px;
-    border: none;
-    cursor: pointer;
+.form .create {
+  background-color: rgb(54, 54, 54);
+  padding: 10px 0px;
+  color: #fff;
+  margin: 20px 0px;
+  border: none;
+  cursor: pointer;
 }
-.box button{
-    background-color: transparent;
-    color: black;
-    border: none;
-    cursor: pointer;
+.box button {
+  background-color: transparent;
+  color: black;
+  border: none;
+  cursor: pointer;
 }
-.hide{
-    display: none;
+.hide {
+  display: none;
+}
+.resumeupload {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px 0px;
+  background-color: #ece2ff;
+  border-bottom: 1px solid black;
+}
+.fileinput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.resumeupload .content h1 {
+  font-size: 50px;
+  text-align: center;
+}
+
+.resumeupload .content p {
+  font-size: 18px;
+  padding: 0px 200px 30px 200px;
+  text-align: center;
+}
+.resumeupload .content  span {
+  font-size: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  display: block;
+  color: rgb(34, 34, 34);
+}
+.alljobs {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px 0px;
+}
+.alljobs .card {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  width: 80%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 10px 20px;
+}
+.alljobs .card .titleJob {
+  padding-bottom: 10px;
+}
+.alljobs .card .titleJob .job-title {
+  color: black;
+  text-transform: capitalize;
+  font-size: 24px;
+}
+.alljobs .card .titleJob .company-name {
+  font-size: 18px;
+  padding: 10px 0px;
+  color: rgb(91, 91, 91);
+}
+.alljobs .card .body .job-description span {
+  font-weight: 700;
+  display: block;
+  padding: 0px 0px 10px 0px;
+}
+.alljobs .card .body .job-description {
+  font-size: 16px;
+  color: rgb(58, 58, 58);
+}
+.alljobs .card .footertitle{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.alljobs .card .job-status{
+  padding-top: 10px;
+}
+.alljobs .card .job-status span{
+  padding: 4px 20px;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 10px;
+  background-color: rgb(219, 255, 219);
+}
+.view-job{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px 0px;
 }

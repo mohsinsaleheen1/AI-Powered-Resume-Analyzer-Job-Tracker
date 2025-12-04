@@ -17,10 +17,6 @@ const jobData = new mongoose.Schema({
     enum: ["Applied", "Interviewing", "Rejected", "Offered"],
     required: true,
   },
-  notes: {
-    type: String,
-    required: true,
-  },
   createdAt: {
     type: Date,
     default: Date.now,

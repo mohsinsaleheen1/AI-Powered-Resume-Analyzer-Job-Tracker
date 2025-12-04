@@ -1,6 +1,11 @@
 // Models Functionality Hides or Shows Models
 let signupModel = document.getElementById("SignupModel");
 let signinModel = document.getElementById("SigninModel");
+let addJobModel = document.getElementById("addJobModel");
+function addJob() {
+  addJobModel.classList.remove("hide");
+  addJobModel.classList.add("model");
+}
 function showSignupModel() {
   signupModel.classList.remove("hide");
   signupModel.classList.add("model");
@@ -22,6 +27,7 @@ function ReplaceshowSignUpModel() {
   signinModel.classList.remove("model");
 }
 function closebtn() {
+  addJobModel.classList.add("hide");
   signupModel.classList.add("hide");
   signinModel.classList.add("hide");
 }
@@ -92,6 +98,110 @@ async function getToken() {
     console.log(err);
   }
 }
+
+const uploadCV = async () => {
+  try {
+    const fileInput = document.getElementById("fileinput");
+    const file = fileInput.files[0];
+    if (!file) {
+      alert("Please select a file!");
+      return;
+    }
+    const formdata = new FormData();
+    formdata.append("file", file);
+    const response = await axios.post(
+      "http://localhost:3000/api/uploadresume/upload",
+      formdata,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+  } catch (error) {
+    console.error(error);
+  }
+};
+// Create Job
+const createJob = async () => {
+  const position = document.getElementById("position").value;
+  const company = document.getElementById("company").value;
+  const jobDescription = document.getElementById("jobDescription").value;
+  const status = document.getElementById("status").value;
+  console.log(position, company, jobDescription, status);
+  if (
+    position === "" ||
+    company === "" ||
+    jobDescription === "" ||
+    status === ""
+  ) {
+    alert("Please Fill Input Fields");
+  } else {
+    try {
+      const res = await axios.post("http://localhost:3000/api/jobs/addJob", {
+        position,
+        company,
+        jobDescription,
+        status,
+      });
+      console.log(res.data);
+      alert("Your Job is Post Sucessfully");
+      addJobModel.classList.add("hide");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+};
+// View All Jobs
+const viewAllJobs = async () => {
+  try {
+    const res = await axios.get("http://localhost:3000/api/jobs/allJob");
+    let job = res.data.findJob;
+    console.log(job);
+    const alljobs = document.getElementById("alljobs");
+    alljobs.innerHTML = "";
+    job.forEach((jobs) => {
+      alljobs.innerHTML += `
+      <div class="card">
+        <div class="titleJob">
+          <h1 class="job-title">
+            ${jobs.position}
+          </h1>
+          <p class="company-name">${jobs.company}</p>
+        </div>
+        <div class="body">
+          <p class="job-description">
+            <span>Job Description:</span>
+            ${jobs.jobDescription}
+          </p>
+        </div>
+        <div class="job-status">
+          <span${jobs.status}</span>
+        </div>
+        <hr />
+        <div class="footertitle">
+          <div>
+            <p>Date: <span>${jobs.createdAt}</span></p>
+          </div>
+          <div class="updation">
+            <button class="normalbtn"><i class="fa-solid fa-file-pen"></i></button>
+            <button class="normalbtn" onclick="deleteJob(${jobs.id})"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+        <div class="mainfooter">
+          <button class="purplebtn">Select Job</button>
+        </div>
+      </div>
+    `;
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+// deleteJob
+const deleteJob = (id) => {
+  console.log(id)
+};
 function logout() {
   localStorage.removeItem("token");
   alert("Logout Successfully");

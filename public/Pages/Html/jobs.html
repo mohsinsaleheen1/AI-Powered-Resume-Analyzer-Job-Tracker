@@ -34,25 +34,35 @@
         </div>
       </div>
     </div>
-    <!-- File Uploading -->
-    <div class="resumeupload">
-      <div class="content">
-        <h1>Let’s Analyze Your Resume</h1>
-        <p>
-          Choose the job you're applying for, upload your CV, and let our AI
-          give you a full breakdown — resume score, ATS score, missing skills,
-          and improvement suggestions.
-        </p>
-        <span>Your Selected Job here</span>
-      </div>
-      <div class="fileinput">
-        <input type="file" id="fileinput" name="resume" />
-        <button onclick="uploadCV()" class="purplebtn">
-          Analyze Selected Job
-        </button>
+    <div class="view-job">
+      <button class="purplebtn" onclick="addJob()">Add Job</button>
+      <button class="purplebtn" onclick="viewAllJobs()">View All Job</button>
+    </div>
+    <div class="hide" id="addJobModel">
+      <div class="box">
+        <div class="closebtn">
+          <i class="fa-solid fa-xmark" onclick="closebtn()"></i>
+        </div>
+        <h1>Add Your Job Details</h1>
+        <div class="form">
+          <label>Position</label>
+          <input type="text" id="position" required />
+          <label>Company</label>
+          <input type="text" id="company" required />
+          <label>Status</label>
+          <select id="status">
+            <option value="Applied">Applied</option>
+            <option value="Interviewing">Interviewing</option>
+            <option value="Rejected">Rejected</option>
+            <option value="Offered">Offered</option>
+          </select>
+          <label>Job Description</label>
+          <textarea name="" id="jobDescription"></textarea>
+          <button class="create" onclick="createJob()">Create</button>
+        </div>
       </div>
     </div>
-    <div class="airesponse"></div>
+    <div class="alljobs" id="alljobs"></div>
     <!-- JavaScript -->
     <script src="../Javascript/App.js"></script>
   </body>

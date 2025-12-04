@@ -1,9 +1,5 @@
 const mongoose = require("mongoose");
 const resumeData = mongoose.Schema({
-  originalText: {
-    type: String,
-    required,
-  },
   aiImprovedText: {
     type: String,
     required,
@@ -15,6 +11,9 @@ const resumeData = mongoose.Schema({
   atsScore: {
     type: Number,
     required,
+  },
+  suggestions: {
+    type:Array,
   },
   createdAt: {
     type: Date,
