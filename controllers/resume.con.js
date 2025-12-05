@@ -41,12 +41,13 @@ Analyze the resume text below and return JSON with:
 ${data.text}
 `;
     console.log(prompt);
-    // Step 3: Call Gemini
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
       contents: [{ text: prompt }],
     });
-    const aiResponse = response.candidates[0].content.parts[0].text;
+    const aiResponse =
+      response?.candidates?.[0]?.content.parts?.[0]?.text?.trim() ||
+      "No AI response";
     console.log("Results", aiResponse);
     return res.json({
       success: true,
@@ -57,5 +58,4 @@ ${data.text}
     return res.status(500).json({ error: error.message });
   }
 };
-
 module.exports = { upload, uploadFile };

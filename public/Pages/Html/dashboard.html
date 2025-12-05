@@ -47,12 +47,31 @@
       </div>
       <div class="fileinput">
         <input type="file" id="fileinput" name="resume" />
-        <button onclick="uploadCV()" class="purplebtn">
-          Analyze Selected Job
-        </button>
+        <div>
+          <button onclick="uploadCV()" class="purplebtn">
+            Analyze Selected Job
+          </button>
+          <button onclick="jobdetails()" class="purplebtn">View Jobs Details</button>
+        </div>
       </div>
     </div>
-    <div class="airesponse"></div>
+
+    <div class="airesponse">
+      <div class="scores">
+        <div class="ats">
+          <h1>ATS SCORE <span id="ats">0</span></h1>
+        </div>
+        <div class="ats">
+          <h1>RESUME SCORE <span id="resumescore">0</span></h1>
+        </div>
+        <div class="ats">
+          <h1>MATCH PERCENTAGE <span id="MatchPercentage">0</span></h1>
+        </div>
+      </div>
+      <ul class="missing" id="missing">
+        <h1>Missing Skills:</h1>
+      </ul>
+    </div>
     <!-- JavaScript -->
     <script src="../Javascript/App.js"></script>
   </body>

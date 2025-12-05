@@ -303,3 +303,46 @@
   gap: 20px;
   padding: 20px 0px;
 }
+.airesponse{
+  display: flex;
+  padding: 20px 80px;
+  flex-direction: column;
+  gap: 10px;
+}
+.airesponse .scores{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.airesponse .scores .ats{
+  padding: 40px 80px;
+  margin-right: 4px;
+  text-align: center;
+  background-color: #ece2ff;
+  border-radius: 10px;
+}
+.airesponse .scores .ats h1{
+  font-size: 20px;
+  color: black;
+}
+.airesponse .scores .ats h1 span{
+  display: block;
+  padding-top: 10px;
+  font-size: 30px;
+  color: #793fdd;
+}
+.missing {
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+.missing h1{
+  padding: 10px;
+  color: rgb(75, 75, 75);
+}
+.missing li{
+  list-style: none;
+  color: rgb(52, 52, 52);
+  text-transform: capitalize;
+  font-size: 18px;
+  padding: 10px 10px;
+}

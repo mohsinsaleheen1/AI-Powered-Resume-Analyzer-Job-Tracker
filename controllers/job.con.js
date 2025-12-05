@@ -1,3 +1,4 @@
+// userId: req.user.id,
 const jobData = require("../models/job.model.js");
 const addJob = async (req, res) => {
   try {
@@ -21,7 +22,7 @@ const addJob = async (req, res) => {
 };
 const allJob = async (req, res) => {
   try {
-    const findJob = await jobData.find();
+    const findJob = await jobData.find({ userId: req.user.id });
     res.send({
       status: 200,
       findJob,
@@ -34,7 +35,10 @@ const allJob = async (req, res) => {
 const singleJob = async (req, res) => {
   try {
     const jobId = req.params.id;
-    const singleJob = await jobData.findById({ _id: jobId });
+    const singleJob = await jobData.findById({
+      _id: jobId,
+      userId: req.user.id,
+    });
     if (!singleJob) {
       res.send({
         status: 404,
@@ -54,7 +58,7 @@ const updateJob = async (req, res) => {
   try {
     const jobId = req.params.id;
     const updatedJob = await jobData.findByIdAndUpdate(
-      { _id: jobId },
+      { _id: jobId, userId: req.user.id },
       req.body,
       { new: true }
     );
@@ -76,7 +80,10 @@ const updateJob = async (req, res) => {
 const deleteJob = async (req, res) => {
   try {
     const jobId = req.params.id;
-    const deletedJob = await jobData.findByIdAndDelete({ _id: jobId });
+    const deletedJob = await jobData.findByIdAndDelete({
+      _id: jobId,
+      userId: req.user.id,
+    });
     if (!deletedJob) {
       res.send({
         status: 404,

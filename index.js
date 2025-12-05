@@ -19,8 +19,8 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/users", userRoute);
 app.use("/api/dashboard", auth, dashboardRoute);
-app.use("/api/jobs", jobsRoute);
-app.use("/api/uploadresume", uploadresume);
+app.use("/api/jobs", auth, jobsRoute);
+app.use("/api/uploadresume", auth, uploadresume);
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is runing at http://localhost:${PORT}`);

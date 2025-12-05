@@ -7,7 +7,7 @@ const auth = async (req, res, next) => {
       const token = bearerHeader.split(" ")[1];
       const user = jwt.verify(token, process.env.JWT_SECRET);
       console.log(user);
-      res.token = user;
+      req.token = user;
       next();
     } else {
       res.status(401).json({ message: "No Token provided" });

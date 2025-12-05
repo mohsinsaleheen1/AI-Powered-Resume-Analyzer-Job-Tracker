@@ -2,6 +2,7 @@
 let signupModel = document.getElementById("SignupModel");
 let signinModel = document.getElementById("SigninModel");
 let addJobModel = document.getElementById("addJobModel");
+let updateJobOne = document.getElementById("updateJob");
 function addJob() {
   addJobModel.classList.remove("hide");
   addJobModel.classList.add("model");
@@ -25,11 +26,6 @@ function ReplaceshowSignUpModel() {
   signupModel.classList.remove("hide");
   signinModel.classList.add("hide");
   signinModel.classList.remove("model");
-}
-function closebtn() {
-  addJobModel.classList.add("hide");
-  signupModel.classList.add("hide");
-  signinModel.classList.add("hide");
 }
 // Signup Functionality
 async function signupForm() {
@@ -78,22 +74,19 @@ async function loginForm() {
 async function getToken() {
   try {
     const token = localStorage.getItem("token");
-    console.log(token);
     if (!token) {
-      return (window.location.href = "../Html/Wellcome.html");
-    } else {
-      const res = await axios.get(
-        "http://localhost:3000/api/dashboard/getdetails",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      if (!window.location.href.includes("dashboard.html")) {
-        window.location.href = "../Html/dashboard.html";
-      }
+      window.location.href = "../Html/Wellcome.html";
+      return;
     }
+    const res = await axios.get(
+      "http://localhost:3000/api/dashboard/getdetails",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    window.location.href = "../Html/dashboard.html";
   } catch (err) {
     console.log(err);
   }
@@ -101,6 +94,7 @@ async function getToken() {
 
 const uploadCV = async () => {
   try {
+    const token = localStorage.getItem("token");
     const fileInput = document.getElementById("fileinput");
     const file = fileInput.files[0];
     if (!file) {
@@ -109,15 +103,33 @@ const uploadCV = async () => {
     }
     const formdata = new FormData();
     formdata.append("file", file);
+    const jobdes = window.jobDescription;
+    console.log("JObWala", jobdes);
     const response = await axios.post(
       "http://localhost:3000/api/uploadresume/upload",
       formdata,
       {
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
         },
       }
     );
+    const aiResponseData = response.data.analysis;
+    let clean = aiResponseData.replace(/```json|```/g, "").trim();
+    let parsed = JSON.parse(clean);
+    console.log(parsed);
+    document.getElementById("ats").innerText = parsed["ATS Score"];
+    document.getElementById("resumescore").innerText = parsed["Resume Score"];
+    // missing Skills
+    const missing = document.getElementById("missing");
+    missing.innerHTML = "";
+    parsed["Missing Skills"].forEach((skills) => {
+      skills = skills.replace(/\*/g, "");
+      const li = document.createElement("li");
+      li.textContent = skills;
+      missing.appendChild(li);
+    });
   } catch (error) {
     console.error(error);
   }
@@ -138,15 +150,25 @@ const createJob = async () => {
     alert("Please Fill Input Fields");
   } else {
     try {
-      const res = await axios.post("http://localhost:3000/api/jobs/addJob", {
-        position,
-        company,
-        jobDescription,
-        status,
-      });
+      const token = localStorage.getItem("token");
+      const res = await axios.post(
+        "http://localhost:3000/api/jobs/addJob",
+        {
+          position,
+          company,
+          jobDescription,
+          status,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log(res.data);
       alert("Your Job is Post Sucessfully");
       addJobModel.classList.add("hide");
+      update();
     } catch (err) {
       console.log(err);
     }
@@ -155,9 +177,13 @@ const createJob = async () => {
 // View All Jobs
 const viewAllJobs = async () => {
   try {
-    const res = await axios.get("http://localhost:3000/api/jobs/allJob");
+    const token = localStorage.getItem("token");
+    const res = await axios.get("http://localhost:3000/api/jobs/allJob", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     let job = res.data.findJob;
-    console.log(job);
     const alljobs = document.getElementById("alljobs");
     alljobs.innerHTML = "";
     job.forEach((jobs) => {
@@ -184,8 +210,8 @@ const viewAllJobs = async () => {
             <p>Date: <span>${jobs.createdAt}</span></p>
           </div>
           <div class="updation">
-            <button class="normalbtn"><i class="fa-solid fa-file-pen"></i></button>
-            <button class="normalbtn" onclick="deleteJob(${jobs.id})"><i class="fa-solid fa-trash"></i></button>
+            <button class="normalbtn" onclick="updateJob('${jobs._id}')"><i class="fa-solid fa-file-pen"></i></button>
+            <button class="normalbtn" onclick="deleteJob('${jobs._id}')"><i class="fa-solid fa-trash"></i></button>
           </div>
         </div>
         <div class="mainfooter">
@@ -198,12 +224,81 @@ const viewAllJobs = async () => {
     console.log(err);
   }
 };
+// Update Job
+const updateJob = async (id) => {
+  try {
+    const token = localStorage.getItem("token");
+    const res = await axios.get(
+      `http://localhost:3000/api/jobs/singleJob/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = res.data.singleJob;
+    const position = (document.getElementById("uposition").value =
+      data.position);
+    const company = (document.getElementById("ucompany").value = data.company);
+    const jobDescription = (document.getElementById("ujobDescription").value =
+      data.jobDescription);
+    window.jobDescription = jobDescription;
+    console.log("Jobdexsss", jobDescription);
+    const status = (document.getElementById("ustatus").value = data.status);
+    updateJobOne.classList.add("model");
+    updateJobOne.classList.remove("hide");
+    window.currentJobId = id;
+  } catch (err) {
+    console.log(err);
+  }
+};
+const update = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const position = document.getElementById("uposition").value;
+    const company = document.getElementById("ucompany").value;
+    const jobDescription = document.getElementById("ujobDescription").value;
+    const status = document.getElementById("ustatus").value;
+    const res = await axios.put(
+      `http://localhost:3000/api/jobs/updateJob/${window.currentJobId}`,
+      { position, company, jobDescription, status },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    updateJobOne.classList.remove("model");
+    updateJobOne.classList.add("hide");
+    viewAllJobs();
+  } catch (err) {
+    console.log(err);
+  }
+};
 // deleteJob
-const deleteJob = (id) => {
-  console.log(id)
+const deleteJob = async (id) => {
+  try {
+    const token = localStorage.getItem("token");
+    const res = await axios.delete(
+      `http://localhost:3000/api/jobs/deleteJob/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(res);
+    viewAllJobs();
+  } catch (err) {
+    console.log(err);
+  }
 };
 function logout() {
   localStorage.removeItem("token");
   alert("Logout Successfully");
   window.location.href = "../Html/Wellcome.html";
 }
+function jobdetails() {
+  window.location.href = "../Html/jobs.html";
+}
+viewAllJobs();
