@@ -1,3 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+p,
+h3 {
+  font-family: "Poppins";
+}
+h1,
+h2 {
+  font-family: "Roboto";
+}
 * {
   margin: 0px;
   padding: 0px;
@@ -184,11 +194,11 @@
 .form input {
   padding: 3px 2px;
 }
-.form textarea{
+.form textarea {
   height: 80px;
   padding: 7px;
 }
-.form select{
+.form select {
   padding: 3px 2px;
 }
 .form input:focus {
@@ -233,10 +243,10 @@
 
 .resumeupload .content p {
   font-size: 18px;
-  padding: 0px 200px 30px 200px;
+  padding: 20px 200px 30px 200px;
   text-align: center;
 }
-.resumeupload .content  span {
+.resumeupload .content span {
   font-size: 20px;
   padding-bottom: 20px;
   text-align: center;
@@ -281,15 +291,15 @@
   font-size: 16px;
   color: rgb(58, 58, 58);
 }
-.alljobs .card .footertitle{
+.alljobs .card .footertitle {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.alljobs .card .job-status{
+.alljobs .card .job-status {
   padding-top: 10px;
 }
-.alljobs .card .job-status span{
+.alljobs .card .job-status span {
   padding: 4px 20px;
   font-size: 14px;
   text-transform: uppercase;
@@ -297,35 +307,35 @@
   border-radius: 10px;
   background-color: rgb(219, 255, 219);
 }
-.view-job{
+.view-job {
   display: flex;
   justify-content: center;
   gap: 20px;
   padding: 20px 0px;
 }
-.airesponse{
+.airesponse {
   display: flex;
   padding: 20px 80px;
   flex-direction: column;
   gap: 10px;
 }
-.airesponse .scores{
+.airesponse .scores {
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
-.airesponse .scores .ats{
+.airesponse .scores .ats {
   padding: 40px 80px;
   margin-right: 4px;
   text-align: center;
   background-color: #ece2ff;
   border-radius: 10px;
 }
-.airesponse .scores .ats h1{
+.airesponse .scores .ats h1 {
   font-size: 20px;
   color: black;
 }
-.airesponse .scores .ats h1 span{
+.airesponse .scores .ats h1 span {
   display: block;
   padding-top: 10px;
   font-size: 30px;
@@ -335,11 +345,11 @@
   border-radius: 10px;
   border: 1px solid gray;
 }
-.missing h1{
+.missing h1 {
   padding: 10px;
   color: rgb(75, 75, 75);
 }
-.missing li{
+.missing li {
   list-style: none;
   color: rgb(52, 52, 52);
   text-transform: capitalize;

@@ -1,4 +1,3 @@
-// userId: req.user.id,
 const jobData = require("../models/job.model.js");
 const addJob = async (req, res) => {
   try {
@@ -9,6 +8,7 @@ const addJob = async (req, res) => {
       jobDescription,
       status,
       notes,
+      userId: req.user.id,
     });
     const savedJob = await job.save();
     res.send({

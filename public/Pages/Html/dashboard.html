@@ -51,7 +51,9 @@
           <button onclick="uploadCV()" class="purplebtn">
             Analyze Selected Job
           </button>
-          <button onclick="jobdetails()" class="purplebtn">View Jobs Details</button>
+          <button onclick="jobdetails()" class="purplebtn">
+            View Jobs Details
+          </button>
         </div>
       </div>
     </div>
@@ -68,11 +70,12 @@
           <h1>MATCH PERCENTAGE <span id="MatchPercentage">0</span></h1>
         </div>
       </div>
-      <ul class="missing" id="missing">
-        <h1>Missing Skills:</h1>
-      </ul>
+      <ul class="missing" id="missing"></ul>
     </div>
     <!-- JavaScript -->
     <script src="../Javascript/App.js"></script>
+    <script>
+      checkAuth();
+    </script>
   </body>
 </html>

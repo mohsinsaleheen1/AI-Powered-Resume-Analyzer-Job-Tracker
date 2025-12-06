@@ -126,8 +126,11 @@ const uploadCV = async () => {
     missing.innerHTML = "";
     parsed["Missing Skills"].forEach((skills) => {
       skills = skills.replace(/\*/g, "");
+      const heading = document.createElement("h1");
       const li = document.createElement("li");
       li.textContent = skills;
+      heading.textContent = "Missing Skills:";
+      missing.appendChild(heading);
       missing.appendChild(li);
     });
   } catch (error) {
@@ -176,8 +179,8 @@ const createJob = async () => {
 };
 // View All Jobs
 const viewAllJobs = async () => {
+  const token = localStorage.getItem("token");
   try {
-    const token = localStorage.getItem("token");
     const res = await axios.get("http://localhost:3000/api/jobs/allJob", {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -301,4 +304,10 @@ function logout() {
 function jobdetails() {
   window.location.href = "../Html/jobs.html";
 }
-viewAllJobs();
+// viewAllJobs();
+function checkAuth() {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    window.location.href = "../Html/Wellcome.html";
+  }
+}
