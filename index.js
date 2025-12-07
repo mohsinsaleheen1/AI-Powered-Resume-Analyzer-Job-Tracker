@@ -21,6 +21,9 @@ app.use("/api/users", userRoute);
 app.use("/api/dashboard", auth, dashboardRoute);
 app.use("/api/jobs", auth, jobsRoute);
 app.use("/api/uploadresume", auth, uploadresume);
+app.get("/", (req, res) => {
+  res.send("Deployment is work");
+});
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is runing at http://localhost:${PORT}`);
