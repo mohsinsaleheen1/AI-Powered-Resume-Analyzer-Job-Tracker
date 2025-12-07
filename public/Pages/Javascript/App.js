@@ -38,7 +38,7 @@ async function signupForm() {
   } else {
     try {
       const res = await axios.post(
-        "https://ai-powered-resume-analyzer-job-tracker-i9a75rpdc.vercel.app//api/users/signup",
+        "https://ai-powered-resume-analyzer-job-tracker-i9a75rpdc.vercel.app/api/users/signup",
         {
           userName,
           userEmail,
@@ -60,10 +60,13 @@ async function loginForm() {
     alert("Please Fill Out All Input Fields");
   } else {
     try {
-      const res = await axios.post("http://localhost:3000/api/users/login", {
-        userEmail,
-        password,
-      });
+      const res = await axios.post(
+        "https://ai-powered-resume-analyzer-job-tracker-dqaaqjkct.vercel.app/api/users/login",
+        {
+          userEmail,
+          password,
+        }
+      );
       const token = res.data.token;
       localStorage.setItem("token", token);
       alert("User Login Successfully");
@@ -82,7 +85,7 @@ async function getToken() {
       return;
     }
     const res = await axios.get(
-      "http://localhost:3000/api/dashboard/getdetails",
+      "https://ai-powered-resume-analyzer-job-tracker-dqaaqjkct.vercel.app/api/dashboard/getdetails",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -109,7 +112,7 @@ const uploadCV = async () => {
     const jobdes = window.jobDescription;
     console.log("JObWala", jobdes);
     const response = await axios.post(
-      "http://localhost:3000/api/uploadresume/upload",
+      "https://ai-powered-resume-analyzer-job-tracker-dqaaqjkct.vercel.app/api/uploadresume/upload",
       formdata,
       {
         headers: {
@@ -158,7 +161,7 @@ const createJob = async () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "http://localhost:3000/api/jobs/addJob",
+        "https://ai-powered-resume-analyzer-job-tracker-dqaaqjkct.vercel.app/api/jobs/addJob",
         {
           position,
           company,
@@ -184,11 +187,14 @@ const createJob = async () => {
 const viewAllJobs = async () => {
   const token = localStorage.getItem("token");
   try {
-    const res = await axios.get("http://localhost:3000/api/jobs/allJob", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await axios.get(
+      "https://ai-powered-resume-analyzer-job-tracker-dqaaqjkct.vercel.app/api/jobs/allJob",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     let job = res.data.findJob;
     const alljobs = document.getElementById("alljobs");
     alljobs.innerHTML = "";
@@ -235,7 +241,7 @@ const updateJob = async (id) => {
   try {
     const token = localStorage.getItem("token");
     const res = await axios.get(
-      `http://localhost:3000/api/jobs/singleJob/${id}`,
+      `https://ai-powered-resume-analyzer-job-tracker-dqaaqjkct.vercel.app/api/jobs/singleJob/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -266,7 +272,7 @@ const update = async () => {
     const jobDescription = document.getElementById("ujobDescription").value;
     const status = document.getElementById("ustatus").value;
     const res = await axios.put(
-      `http://localhost:3000/api/jobs/updateJob/${window.currentJobId}`,
+      `https://ai-powered-resume-analyzer-job-tracker-dqaaqjkct.vercel.app/api/jobs/updateJob/${window.currentJobId}`,
       { position, company, jobDescription, status },
       {
         headers: {
@@ -286,7 +292,7 @@ const deleteJob = async (id) => {
   try {
     const token = localStorage.getItem("token");
     const res = await axios.delete(
-      `http://localhost:3000/api/jobs/deleteJob/${id}`,
+      `https://ai-powered-resume-analyzer-job-tracker-dqaaqjkct.vercel.app/api/jobs/deleteJob/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
