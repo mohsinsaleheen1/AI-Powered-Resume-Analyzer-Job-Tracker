@@ -37,11 +37,14 @@ async function signupForm() {
     alert("Please Fill Out All Input Fields");
   } else {
     try {
-      const res = await axios.post("http://localhost:3000/api/users/signup", {
-        userName,
-        userEmail,
-        password,
-      });
+      const res = await axios.post(
+        "https://ai-powered-resume-analyzer-job-tracker-i9a75rpdc.vercel.app//api/users/signup",
+        {
+          userName,
+          userEmail,
+          password,
+        }
+      );
       alert("Your Account Create Suucessfully");
       ReplaceshowSignModel();
     } catch (err) {
