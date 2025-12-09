@@ -24,7 +24,7 @@ app.use("/api/uploadresume", auth, uploadresume);
 app.get("/", (req, res) => {
   res.send("Deployment is work");
 });
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server is runing at http://localhost:${PORT}`);
 });
