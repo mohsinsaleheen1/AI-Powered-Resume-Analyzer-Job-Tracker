@@ -37,14 +37,11 @@ async function signupForm() {
     alert("Please Fill Out All Input Fields");
   } else {
     try {
-      const res = await axios.post(
-        "https://ai-powered-resume-analyzer-job-tracker-production.up.railway.app/api/users/signup",
-        {
-          userName,
-          userEmail,
-          password,
-        }
-      );
+      const res = await axios.post("http://localhost:3000/api/users/signup", {
+        userName,
+        userEmail,
+        password,
+      });
       alert("Your Account Create Suucessfully");
       ReplaceshowSignModel();
     } catch (err) {
@@ -60,13 +57,10 @@ async function loginForm() {
     alert("Please Fill Out All Input Fields");
   } else {
     try {
-      const res = await axios.post(
-        "https://ai-powered-resume-analyzer-job-tracker-production.up.railway.app/api/users/login",
-        {
-          userEmail,
-          password,
-        }
-      );
+      const res = await axios.post("http://localhost:3000/api/users/login", {
+        userEmail,
+        password,
+      });
       const token = res.data.token;
       localStorage.setItem("token", token);
       alert("User Login Successfully");
@@ -85,7 +79,7 @@ async function getToken() {
       return;
     }
     const res = await axios.get(
-      "https://ai-powered-resume-analyzer-job-tracker-production.up.railway.app/api/dashboard/getdetails",
+      "http://localhost:3000/api/dashboard/getdetails",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -112,7 +106,7 @@ const uploadCV = async () => {
     const jobdes = window.jobDescription;
     console.log("JObWala", jobdes);
     const response = await axios.post(
-      "https://ai-powered-resume-analyzer-job-tracker-production.up.railway.app/api/uploadresume/upload",
+      "http://localhost:3000/api/uploadresume/upload",
       formdata,
       {
         headers: {
@@ -130,13 +124,13 @@ const uploadCV = async () => {
     // missing Skills
     const missing = document.getElementById("missing");
     missing.innerHTML = "";
+    const heading = document.createElement("h1");
+    missing.appendChild(heading);
     parsed["Missing Skills"].forEach((skills) => {
       skills = skills.replace(/\*/g, "");
-      const heading = document.createElement("h1");
       const li = document.createElement("li");
       li.textContent = skills;
       heading.textContent = "Missing Skills:";
-      missing.appendChild(heading);
       missing.appendChild(li);
     });
   } catch (error) {
@@ -161,7 +155,7 @@ const createJob = async () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "https://ai-powered-resume-analyzer-job-tracker-production.up.railway.app/api/jobs/addJob",
+        "http://localhost:3000/api/jobs/addJob",
         {
           position,
           company,
@@ -187,14 +181,11 @@ const createJob = async () => {
 const viewAllJobs = async () => {
   const token = localStorage.getItem("token");
   try {
-    const res = await axios.get(
-      "https://ai-powered-resume-analyzer-job-tracker-production.up.railway.app/api/jobs/allJob",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const res = await axios.get("http://localhost:3000/api/jobs/allJob", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     let job = res.data.findJob;
     const alljobs = document.getElementById("alljobs");
     alljobs.innerHTML = "";
@@ -241,7 +232,7 @@ const updateJob = async (id) => {
   try {
     const token = localStorage.getItem("token");
     const res = await axios.get(
-      `https://ai-powered-resume-analyzer-job-tracker-production.up.railway.app/api/jobs/singleJob/${id}`,
+      `http://localhost:3000/api/jobs/singleJob/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -272,7 +263,7 @@ const update = async () => {
     const jobDescription = document.getElementById("ujobDescription").value;
     const status = document.getElementById("ustatus").value;
     const res = await axios.put(
-      `https://ai-powered-resume-analyzer-job-tracker-production.up.railway.app/api/jobs/updateJob/${window.currentJobId}`,
+      `http://localhost:3000/api/jobs/updateJob/${window.currentJobId}`,
       { position, company, jobDescription, status },
       {
         headers: {
@@ -292,7 +283,7 @@ const deleteJob = async (id) => {
   try {
     const token = localStorage.getItem("token");
     const res = await axios.delete(
-      `https://ai-powered-resume-analyzer-job-tracker-production.up.railway.app/api/jobs/deleteJob/${id}`,
+      `http://localhost:3000/api/jobs/deleteJob/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
